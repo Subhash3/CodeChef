@@ -1,0 +1,49 @@
+#!/usr/bin/python3
+
+def count_bits(num, bit) :
+    bit = str(bit)
+    binary = bin(num)[2:]
+    count = 0
+    for b in binary :
+        if b == bit :
+            count += 1
+    # print("No of " + str(bit) + "s in " + str(num) + " are: " + str(count))
+    return count
+
+
+try :
+    T = int(input())
+except :
+    quit()
+
+
+for test_case in range(T) :
+    even = 0
+    odd = 0
+    S = set()
+    # print("Initially:", even, odd)
+    Q = int(input())
+    for query in range(Q) :
+        x = int(input())
+        elements_to_add = set()
+        for y in S :
+            if x != y :
+                num = x^y
+                if num != x and num not in elements_to_add and num not in S :
+                    # print(num, " is not in set ", elements_to_add)
+                    elements_to_add.add(num)
+                    if count_bits(num, 1) % 2 == 0 :
+                        even += 1
+                    else :
+                        odd += 1
+        if x not in elements_to_add and x not in S:
+            elements_to_add.add(x)
+            if count_bits(x, 1) % 2 == 0 :
+                even += 1
+            else :
+                odd += 1
+        # S = S.union(set(elements_to_add))
+        S = S.union(elements_to_add)
+        # print(S)
+        print(even, odd)
+

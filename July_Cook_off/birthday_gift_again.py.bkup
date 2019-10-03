@@ -1,0 +1,52 @@
+#!/usr/bin/python3
+
+def isSpecial(U, N) :
+    count_1 = 0
+    count_0 = 0
+    for i in range(N) :
+        if U[i] == '1' :
+            count_1 += 1
+        else :
+            count_0 += 1
+
+    if count_1 * count_1 == count_0 :
+        return True
+    else :
+        return False
+
+def beauty(S) :
+    b = 0
+    num = 1
+    N = None
+    while True :
+        length = num + num**2
+        # print("length of U:", length)
+        if N != None and length > N :
+            break
+        i = 0
+        while True :
+            j = length+i
+            try :
+                some_shit = S[j-1]
+                U = S[i:j]
+            except :
+                N = j-1
+                # print("length of S:", N)
+                break
+
+            # print("i:", i, "U:", U, "length:", length)
+            if isSpecial(U, length) :
+                b += 1
+
+            i += 1
+        num += 1
+    return b
+
+try :
+    T = int(input())
+except :
+    quit()
+
+for test_case in range(T) :
+    S = input()
+    print(beauty(S))

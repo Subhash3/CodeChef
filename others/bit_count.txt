@@ -1,0 +1,14 @@
+
+# def bit_count(num, bit) :
+#     ones = 0
+#     zeroes = 0
+#     while num != 0 :
+#         if num %2 == 1 : # Odd
+#             ones += 1
+#         else : # Even
+#             zeroes += 1
+#         num = num // 2
+#     if bit == 1 :
+#         return ones
+#     else :
+#         return zeroes
