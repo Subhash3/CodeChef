@@ -1,0 +1,25 @@
+Let us say that the array is 
+    Arr = [1, 2, 3, 4, 5]
+Basically what is happening is: 
+    for a valid i in [0, K), Arr[i] becomes Arr[i] ^ Arr[K-N-i]
+    i.e
+    k = 1
+        Arr[1^5, 2, 3, 4, 5]
+    k = 2
+        Arr[1^5, 2^4, 3, 4, 5]
+    k = 3
+        Arr[1^5, 2^4, 3^3, 4, 5]
+        and so on...
+
+Points to ponder: 
+    a^b = b^a
+    a^b^c = (a^b)^c = a^(b^c)
+          = a^c^b
+
+For any two values a, b we can have atmost 3 different values obtained by XOR.
+They are : (a, b, and a^b)
+
+This is exactly what I used in the program.
+I calculated Possible values for each index.
+Keeping this in mind, one can easily find a pattern in the output if arr_modified_pattern.py
+And code for that pattern ==> arr_modified.py

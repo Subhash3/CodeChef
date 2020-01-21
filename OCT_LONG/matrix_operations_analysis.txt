@@ -1,0 +1,22 @@
+The main idea is, 
+    - When we add 1 (basically any odd number) to an even number, it becomes odd and vice versa.
+
+Let us have to different matrices to perform row operations and column operations seperately.
+If we apply the operation(adding 1) to a particular row, all its elements switch between even and odd.(Same for any column).
+I used True for Odd and False for even. (Initially, all are even because all are zeoroes).
+
+To maintain this, I used a columnar matrix contains the information about every row i.e 
+    for i in my columnar_matrix :
+        if i == True , implies that, all the values of that particular row are True in the original matrix.
+Same with the row_matrix, except that it tracks the column info of the matrix.
+
+Finally, XOR all the values of columnar_matrix  with all the values of row_matrix and calculate the number of True's.
+Eg: columnar_matrix = [T, T, F, T]
+    row_matrix = [F, T]
+
+    count = 0
+    for i in columnar_matrix :
+        for j in row_matrix :
+            if i^j == True :
+                cout += 1
+The above snippet gives the number if odd values.

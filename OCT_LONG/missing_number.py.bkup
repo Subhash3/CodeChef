@@ -1,0 +1,62 @@
+#!/usr/bin/python3
+
+MAX_X = 1000000000000
+
+def to_decimal(string, base) :
+    l = len(string)
+    num = 0
+    for i in range(l) :
+        try :
+            digit = int(string[i])
+        except :
+            digit = ord(string[i]) -ord('A') +10
+        # print(digit)
+        if digit >= base :
+            return None
+        num += digit*(base**(l-i-1))
+
+    return num
+
+try :
+    T = int(input())
+except :
+    quit()
+
+for testCase in range(T) :
+    N = int(input())
+    
+    known_decimal = None
+    string_and_base_values = dict()
+
+    common = set()
+    for i in range(N) :
+        values = input().split()
+        B = int(values[0])
+        Y = values[1]
+
+        base_values = set()
+        if B != -1 :
+            known_decimal = to_decimal(Y, B)
+        for base in range(2, 37) :
+            base_value = to_decimal(Y, base)
+            if base_value != None :
+                base_values.add(to_decimal(Y, base))
+        string_and_base_values[Y] = base_values
+        if common == set() :
+            common = base_values
+        else :
+            common = common.intersection(base_values)
+        print(Y, base_values)
+    # print(string_and_base_values)
+    print("common:", common)
+    if common == set() :
+        print(-1)
+    else :
+        smallest = None
+        for num in common :
+            if smallest == None or smallest > num :
+                smallest = num
+        if smallest > MAX_X :
+            print(-1)
+        else :
+            print(smallest)
